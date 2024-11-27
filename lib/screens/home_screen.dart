@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:maya_flutter/screens/send_money_screen.dart';
-import 'package:maya_flutter/screens/transaction_screen.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../cubit/cubit/wallet_balance_cubit.dart';
 import '../utils/ui_helper.dart';
 
+import 'send_money_screen.dart';
+import 'transaction_screen.dart';
+
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final _walletBalanceCubit = WalletBalanceCubit();
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +31,29 @@ class HomeScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   UIHelper.horizontalSpace(10),
-                  const Icon(Icons.visibility, size: 20,)
+                  BlocBuilder<WalletBalanceCubit, WalletBalanceState>(
+                    bloc: _walletBalanceCubit,
+                    builder: (context, state) {
+                      if (state.toggleShowBalance) {
+                        return _buildWalletToggleIcon(Icons.visibility,
+                            onTap: _walletBalanceCubit.hideBalance);
+                      } else {
+                        return _buildWalletToggleIcon(Icons.visibility_off,
+                            onTap: _walletBalanceCubit.showBalance);
+                      }
+                    },
+                  )
                 ],
               ),
               UIHelper.verticalSpace(5),
-              Text(
-                '₱ 14,000.00',
-                style: Theme.of(context).textTheme.headlineMedium,
+              BlocBuilder<WalletBalanceCubit, WalletBalanceState>(
+                bloc: _walletBalanceCubit,
+                builder: (context, state) {
+                  return Text(
+                    state.toggleShowBalance ? '₱ 14,000.00' : '₱ *****',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  );
+                },
               ),
               UIHelper.verticalSpaceXSmall(),
               Row(
@@ -60,6 +82,16 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildWalletToggleIcon(IconData icon, {required Function() onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Icon(
+        icon,
+        size: 20,
       ),
     );
   }

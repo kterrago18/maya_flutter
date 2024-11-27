@@ -21,6 +21,11 @@ Here's a detailed folder structure for a Flutter project utilizing the BLoC (Bus
       |    |     |- counter_event.dart
       |    |     |- counter_state.dart
       |
+      |- cubit/
+      |    |- counter/
+      |    |     |- counter_cubit.dart
+      |    |     |- counter_state.dart
+      |
       |- data/
       |    |- models/
       |    |     |- user.dart
