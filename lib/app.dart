@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maya_flutter/presentation/cubit/user/user_cubit.dart';
-import 'package:maya_flutter/domain/usecases/get_available_balance_usecase.dart';
 
-import 'presentation/cubit/wallet_balance/wallet_balance_cubit.dart';
 import 'data/repositories/user_repository.dart';
+import 'domain/usecases/get_available_balance_usecase.dart';
+import 'domain/usecases/send_money_usecase.dart';
+import 'domain/usecases/update_balance_usecase.dart';
+import 'presentation/cubit/user/user_cubit.dart';
+import 'presentation/cubit/wallet_balance/wallet_balance_cubit.dart';
 import 'presentation/screens/home_screen.dart';
 
 class App extends StatelessWidget {
@@ -19,8 +21,13 @@ class App extends StatelessWidget {
         providers: [
           BlocProvider(
               create: (context) => UserCubit(
-                  getAvailableBalanceUseCase: GetAvailableBalanceUseCase(
-                      userRepository: context.read<UserRepository>()))),
+                    getAvailableBalanceUseCase: GetAvailableBalanceUseCase(
+                        userRepository: context.read<UserRepository>()),
+                    sendMoneyUseCase: SendMoneyUseCase(
+                        userRepository: context.read<UserRepository>()),
+                    updateBalanceUseCase: UpdateBalanceUseCase(
+                        userRepository: context.read<UserRepository>()),
+                  )),
           BlocProvider(
             create: (_) => WalletBalanceCubit(),
           ),

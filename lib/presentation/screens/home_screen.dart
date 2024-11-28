@@ -25,83 +25,91 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               UIHelper.verticalSpaceLarge(),
-              Row(
-                children: [
-                  Text(
-                    'Wallet Balance',
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                  UIHelper.horizontalSpace(10),
-                  BlocBuilder<WalletBalanceCubit, WalletBalanceState>(
-                    bloc: _walletBalanceCubit,
-                    builder: (context, state) {
-                      if (state.toggleShowBalance) {
-                        return _buildWalletToggleIcon(Icons.visibility,
-                            onTap: _walletBalanceCubit.hideBalance);
-                      } else {
-                        return _buildWalletToggleIcon(Icons.visibility_off,
-                            onTap: _walletBalanceCubit.showBalance);
-                      }
-                    },
-                  )
-                ],
-              ),
+              _buildBalanceLabel(),
               UIHelper.verticalSpace(5),
-              BlocBuilder<UserCubit, UserState>(
-                bloc: context.read<UserCubit>()..loadAvailableBalance(),
-                builder: (context, userState) {
-                  if (userState.appState == AppState.loading) {
-                    return const Text('Loading');
-                  }
-
-                  if (userState.appState == AppState.error) {
-                    return const Text('Something with wrong.');
-                  }
-
-                  if (userState.appState == AppState.loaded) {
-                    return BlocBuilder<WalletBalanceCubit, WalletBalanceState>(
-                      bloc: _walletBalanceCubit,
-                      builder: (context, state) {
-                        return Text(
-                          state.toggleShowBalance ? '₱ ${userState.availableBalance}' : '₱ *****',
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        );
-                      },
-                    );
-                  }
-
-                  return const Text('Something with wrong.');
-                },
-              ),
+              _buildBalance(),
               UIHelper.verticalSpaceXSmall(),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      child: const Text("Send Money"),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => SendMoneyScreen()));
-                      },
-                    ),
-                  ),
-                  UIHelper.horizontalSpaceXSmall(),
-                  Expanded(
-                    child: OutlinedButton(
-                      child: const Text("Transactions"),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => const TransactionsScreen()));
-                      },
-                    ),
-                  ),
-                ],
-              ),
+              _buildButtons(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildBalanceLabel() {
+    return Builder(builder: (context) {
+      return Row(
+        children: [
+          Text(
+            'Wallet Balance',
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          UIHelper.horizontalSpace(10),
+          BlocBuilder<WalletBalanceCubit, WalletBalanceState>(
+            bloc: _walletBalanceCubit,
+            builder: (context, state) {
+              if (state.toggleShowBalance) {
+                return _buildWalletToggleIcon(Icons.visibility,
+                    onTap: _walletBalanceCubit.hideBalance);
+              } else {
+                return _buildWalletToggleIcon(Icons.visibility_off,
+                    onTap: _walletBalanceCubit.showBalance);
+              }
+            },
+          )
+        ],
+      );
+    });
+  }
+
+  Widget _buildButtons() {
+    return Builder(builder: (context) {
+      return Row(
+        children: [
+          Expanded(
+            child: ElevatedButton(
+              child: const Text("Send Money"),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => SendMoneyScreen()));
+              },
+            ),
+          ),
+          UIHelper.horizontalSpaceXSmall(),
+          Expanded(
+            child: OutlinedButton(
+              child: const Text("Transactions"),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const TransactionsScreen()));
+              },
+            ),
+          ),
+        ],
+      );
+    });
+  }
+
+  Widget _buildBalance() {
+    return Builder(builder: (context) {
+      return BlocBuilder<UserCubit, UserState>(
+        bloc: context.read<UserCubit>()..loadAvailableBalance(),
+        builder: (context, userState) {
+          return BlocBuilder<WalletBalanceCubit, WalletBalanceState>(
+            bloc: _walletBalanceCubit,
+            builder: (context, state) {
+              return Text(
+                state.toggleShowBalance
+                    ? '₱ ${userState.availableBalance}'
+                    : '₱ *****',
+                style: Theme.of(context).textTheme.headlineMedium,
+              );
+            },
+          );
+        },
+      );
+    });
   }
 
   Widget _buildWalletToggleIcon(IconData icon, {required Function() onTap}) {

@@ -17,6 +17,7 @@ Here's a detailed folder structure for a Flutter project utilizing the BLoC (Bus
     lib/
     ├── core/
     │   └── utils/
+    │   └── configs/
     ├── data/
     │   ├── models/
     │   └── repositories/
