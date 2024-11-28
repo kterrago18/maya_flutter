@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "658568950794",
+    "project_id": "maya-flutter-bf071",
+    "storage_bucket": "maya-flutter-bf071.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658568950794:android:a119bb5ff6b7dfbbecdbf3",
+        "android_client_info": {
+          "package_name": "com.example.maya_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfcWvC4yKt6YNFRsyt5CxhGx0tYZ76ESw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

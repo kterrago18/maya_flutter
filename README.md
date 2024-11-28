@@ -15,38 +15,19 @@ Run build.sh file on terminal
 Here's a detailed folder structure for a Flutter project utilizing the BLoC (Business Logic Component) pattern:
 
     lib/
-      |- bloc/
-      |    |- counter/
-      |    |     |- counter_bloc.dart
-      |    |     |- counter_event.dart
-      |    |     |- counter_state.dart
-      |
-      |- cubit/
-      |    |- counter/
-      |    |     |- counter_cubit.dart
-      |    |     |- counter_state.dart
-      |
-      |- data/
-      |    |- models/
-      |    |     |- user.dart
-      |    |
-      |    |- repositories/
-      |    |     |- user_repository.dart
-      |    |
-      |    |- usecases/
-      |    |     |- get_user_usecase.dart
-      |
-      |- screens/
-      |     |- home_screen.dart
-      |     |- login_screen.dart
-      |
-      |- services/
-      |      |- api_service.dart
-      |
-      |- utils/
-      |     |- validators.dart
-      |
-      |- widgets/
-      |     |- custom_button.dart
-      |
-      |- main.dart
+    ├── core/
+    │   └── utils/
+    ├── data/
+    │   ├── models/
+    │   └── repositories/
+    ├── domain/
+    │   ├── entities/
+    │   ├── repositories/
+    │   └── usecases/
+    └── presentation/
+    |   ├── blocs/
+    |   ├── cubit/
+    |   └── screens/
+    └── app.dart
+    └── main.dart
+

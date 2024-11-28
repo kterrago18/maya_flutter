@@ -1,0 +1,41 @@
+{
+    "firestore": {
+        "rules": "firestore.rules",
+        "indexes": "firestore.indexes.json"
+    },
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "maya-flutter-bf071",
+                    "appId": "1:658568950794:android:a119bb5ff6b7dfbbecdbf3",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "ios": {
+                "default": {
+                    "projectId": "maya-flutter-bf071",
+                    "appId": "1:658568950794:ios:f58b7778d23b0272ecdbf3",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "ios/Runner/GoogleService-Info.plist"
+                }
+            },
+            "macos": {
+                "default": {
+                    "projectId": "maya-flutter-bf071",
+                    "appId": "1:658568950794:ios:f58b7778d23b0272ecdbf3",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "macos/Runner/GoogleService-Info.plist"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "maya-flutter-bf071",
+                    "configurations": {
+                        "android": "1:658568950794:android:a119bb5ff6b7dfbbecdbf3"
+                    }
+                }
+            }
+        }
+    }
+}

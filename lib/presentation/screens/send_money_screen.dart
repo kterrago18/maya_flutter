@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../utils/text_input_filter.dart';
-import '../utils/ui_helper.dart';
+import '../../core/utils/text_input_filter.dart';
+import '../../core/utils/ui_helper.dart';
 
 class SendMoneyScreen extends StatelessWidget {
   SendMoneyScreen({super.key});
