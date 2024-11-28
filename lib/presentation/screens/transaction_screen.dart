@@ -33,6 +33,7 @@ class TransactionsScreen extends StatelessWidget {
                         return _buildListItem(
                           item.dateAndTimeCreated,
                           item.amountValue,
+                          item.userCurrentBalance
                         );
                       } else {
                         return const Text(
@@ -53,16 +54,36 @@ class TransactionsScreen extends StatelessWidget {
     );
   }
 
-  ListTile _buildListItem(String? dateAndTimeCreated, num? amountValue) {
+  Widget _buildListItem(
+      String? dateAndTimeCreated, num? amountValue, num? currentBalance) {
     var amountString = NumberFormat.currency(decimalDigits: 2, symbol: '₱')
         .format(amountValue);
 
+    var currentBalanceString =
+        NumberFormat.currency(decimalDigits: 2, symbol: '₱')
+            .format(currentBalance! - amountValue!);
+
     var timeagoString =
         timeago.format(DateTime.parse(dateAndTimeCreated ?? ''));
-    return ListTile(
-      title: const Text('Sent'),
-      subtitle: Text(timeagoString),
-      trailing: Text('-$amountString'),
-    );
+    return Builder(builder: (context) {
+      return ListTile(
+        title: const Text('Sent'),
+        subtitle: Text(timeagoString),
+        trailing: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              '-$amountString',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            Text(
+              currentBalanceString,
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
