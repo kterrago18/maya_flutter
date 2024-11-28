@@ -5,7 +5,7 @@ class UpdateBalanceUseCase {
 
   UpdateBalanceUseCase({required this.userRepository});
 
-  Future<void> call(double value) async {
+  Future<void> call(num value) async {
     await userRepository.updateBalance(value);
   }
 }

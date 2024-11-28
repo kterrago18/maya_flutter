@@ -1,7 +1,7 @@
 class TransactionLog {
   final String? dateAndTimeCreated;
-  final double? amountValue;
-  final double? userCurrentBalance;
+  final num? amountValue;
+  final num? userCurrentBalance;
 
   TransactionLog({
     this.dateAndTimeCreated,

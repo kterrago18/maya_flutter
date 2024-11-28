@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'data/repositories/user_repository.dart';
+import 'domain/usecases/get_all_transactions_usecase.dart';
 import 'domain/usecases/get_available_balance_usecase.dart';
 import 'domain/usecases/send_money_usecase.dart';
 import 'domain/usecases/update_balance_usecase.dart';
@@ -26,6 +27,8 @@ class App extends StatelessWidget {
                     sendMoneyUseCase: SendMoneyUseCase(
                         userRepository: context.read<UserRepository>()),
                     updateBalanceUseCase: UpdateBalanceUseCase(
+                        userRepository: context.read<UserRepository>()),
+                    getAllTransactionsUseCase: GetAllTransactionsUseCase(
                         userRepository: context.read<UserRepository>()),
                   )),
           BlocProvider(

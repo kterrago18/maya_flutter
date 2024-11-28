@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maya_flutter/app.dart';
-import 'package:maya_flutter/data/models/transaction_log_model.dart';
-import 'package:maya_flutter/presentation/cubit/user/user_cubit.dart';
 
 import '../../core/utils/text_input_filter.dart';
 import '../../core/utils/ui_helper.dart';
+import '../../data/models/transaction_log_model.dart';
+import '../cubit/user/user_cubit.dart';
 
 class SendMoneyScreen extends StatelessWidget {
   SendMoneyScreen({super.key});
@@ -72,7 +72,7 @@ class SendMoneyScreen extends StatelessWidget {
                     amountValue: _amountTextEdittingController.text.isEmpty
                         ? 0
                         : double.parse(_amountTextEdittingController.text),
-                    userCurrentBalance: state.availableBalance as double),
+                    userCurrentBalance: state.availableBalance),
               );
             },
           );

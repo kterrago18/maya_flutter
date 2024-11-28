@@ -5,4 +5,5 @@ abstract class IUserRepository {
   Future<void> addTransaction(TransactionLogModel transactionModel);
   Future<void> sendMoney(TransactionLogModel transactionModel);
   Future<void> updateBalance(double value);
+  Future<List<TransactionLogModel>> loadTransactions();
 }

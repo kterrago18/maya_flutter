@@ -94,7 +94,7 @@ class HomeScreen extends StatelessWidget {
   Widget _buildBalance() {
     return Builder(builder: (context) {
       return BlocBuilder<UserCubit, UserState>(
-        bloc: context.read<UserCubit>()..loadAvailableBalance(),
+        bloc: context.read<UserCubit>()..init(),
         builder: (context, userState) {
           return BlocBuilder<WalletBalanceCubit, WalletBalanceState>(
             bloc: _walletBalanceCubit,

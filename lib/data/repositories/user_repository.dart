@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -55,7 +57,7 @@ class UserRepository implements IUserRepository {
   }
 
   @override
-  Future<void> updateBalance(double value) async {
+  Future<void> updateBalance(num value) async {
     try {
       await firestoreInstance
           .collection('users')
@@ -64,6 +66,33 @@ class UserRepository implements IUserRepository {
           .then((value) => debugPrint("## Transaction log added"))
           .catchError(
               (error) => debugPrint("## Failed to add transaction: $error"));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<TransactionLogModel>> loadTransactions() async {
+    try {
+      // Get docs from collection reference
+      QuerySnapshot querySnapshot = await firestoreInstance
+          .collection('transactions')
+          .orderBy('dateAndTimeCreated', descending: true)
+          .get();
+
+      // Get data from docs and convert map to List
+      final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+
+      List<TransactionLogModel> transactions = [];
+
+      if (allData.isNotEmpty) {
+        for (var item in allData) {
+          var transaction = TransactionLogModel.fromJson(jsonEncode(item));
+          transactions.add(transaction);
+        }
+      }
+
+      return transactions;
     } catch (e) {
       rethrow;
     }
