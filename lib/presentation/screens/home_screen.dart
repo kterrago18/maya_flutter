@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:maya_flutter/presentation/cubit/user/user_cubit.dart';
 
 import '../cubit/wallet_balance/wallet_balance_cubit.dart';
@@ -96,13 +97,14 @@ class HomeScreen extends StatelessWidget {
       return BlocBuilder<UserCubit, UserState>(
         bloc: context.read<UserCubit>()..init(),
         builder: (context, userState) {
+          var amountString =
+              NumberFormat.currency(decimalDigits: 2, symbol: '₱')
+                  .format(userState.availableBalance);
           return BlocBuilder<WalletBalanceCubit, WalletBalanceState>(
             bloc: _walletBalanceCubit,
             builder: (context, state) {
               return Text(
-                state.toggleShowBalance
-                    ? '₱ ${userState.availableBalance}'
-                    : '₱ *****',
+                state.toggleShowBalance ? amountString : '₱*****',
                 style: Theme.of(context).textTheme.headlineMedium,
               );
             },
