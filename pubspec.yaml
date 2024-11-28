@@ -20,9 +20,12 @@ dependencies:
   timeago: ^3.7.0
 
 dev_dependencies:
+  bloc_test: ^9.1.7
+  build_runner: ^2.4.13
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
+  mockito: ^5.4.4
 
 flutter:
   uses-material-design: true
