@@ -73,7 +73,7 @@ class UserCubit extends Cubit<UserState> {
     try {
       availableBalance = await _getAvailableBalanceUseCase.call();
 
-      emit(state.copyWith(appState: AppState.initital, errorMessage: null));
+      emit(state.copyWith(appState: AppState.initital, errorMessage: null, availableBalance: availableBalance));
     } catch (e) {
       debugPrint('## $e');
 
