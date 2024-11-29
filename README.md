@@ -80,7 +80,8 @@ This app consist 3 screens:
 
 ## Screenshots
 
-![App Screenshot](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExY29zbmw5ZW9reTRtcWpwM3RnNHhnZmdoa3F4bTZ4aHhjcGpsY21tMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KGwZFP9EXBnyeSSFK9/giphy.gif)
+#### Android
+![App Screenshot](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3lwOGhkbWFjZ2htM3FneTRmYXR6Mm5pb2JsZHo2NDdwaDBuZHN2aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bkUqQ4FRspH3Di8qmV/giphy.gif)
 
 
 ## Folder Structure
