@@ -1,6 +1,9 @@
 # maya_flutter
 
-A Flutter project for Maya Flutter. The data read here is dynamic and it is stored in Firebase. I used it to make the data shown here feel real rather than using a fake API.
+A Flutter project for Maya Flutter. 
+
+## Please note.
+The data read here is dynamic and it is stored in Firebase. I used it to make the data shown here feel real rather than using a fake API.
 
 ## Setup Instructions
 
