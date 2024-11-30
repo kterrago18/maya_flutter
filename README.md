@@ -11,7 +11,7 @@ A Flutter project for Maya Flutter. The data read here is dynamic and it is stor
 ```
 
 #### 2. Open the project using IDE such as VSCode or Android Studio
-Make you have installed Flutter SDK on your machine.
+Please make sure you have installed Flutter SDK on your machine.
 
 #### 3. Install dependencies
 
@@ -86,7 +86,7 @@ This app consist 3 screens:
 
 ## Folder Structure
 
-Here's a detailed folder structure for a Flutter project utilizing the BLoC (Business Logic Component) pattern:
+Here's a detailed folder structure for a Flutter project utilizing the BLoC (Business Logic Component) and Clean architecture pattern:
 
     lib/
     ├── core/
